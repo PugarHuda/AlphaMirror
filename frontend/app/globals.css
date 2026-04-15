@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  background: #131313;
+  color: #e5e2e1;
+  font-family: 'Manrope', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.glass {
+  background: rgba(53, 53, 52, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: all 0.3s ease;
+}
+
+.glass:hover {
+  background: rgba(53, 53, 52, 0.5);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(255, 122, 0, 0.4);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 122, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 122, 0, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 56px 56px; }
+}
+
+.radial-fade {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 122, 0, 0.15), transparent);
+}
+
+.verdict-APPROVED {
+  background: rgba(125, 208, 138, 0.15);
+  color: #7dd08a;
+  border: 1px solid rgba(125, 208, 138, 0.35);
+  transition: all 0.2s ease;
+}
+.verdict-APPROVED:hover {
+  background: rgba(125, 208, 138, 0.25);
+  border-color: rgba(125, 208, 138, 0.5);
+}
+
+.verdict-REVIEW {
+  background: rgba(255, 122, 0, 0.15);
+  color: #ffb68b;
+  border: 1px solid rgba(255, 122, 0, 0.35);
+  transition: all 0.2s ease;
+}
+.verdict-REVIEW:hover {
+  background: rgba(255, 122, 0, 0.25);
+  border-color: rgba(255, 122, 0, 0.5);
+}
+
+.verdict-REJECTED {
+  background: rgba(255, 180, 171, 0.15);
+  color: #ffb4ab;
+  border: 1px solid rgba(255, 180, 171, 0.35);
+  transition: all 0.2s ease;
+}
+.verdict-REJECTED:hover {
+  background: rgba(255, 180, 171, 0.25);
+  border-color: rgba(255, 180, 171, 0.5);
+}
+
+.scroll-area::-webkit-scrollbar { 
+  width: 8px; 
+  height: 8px; 
+}
+.scroll-area::-webkit-scrollbar-track {
+  background: rgba(53, 53, 52, 0.3);
+  border-radius: 8px;
+}
+.scroll-area::-webkit-scrollbar-thumb { 
+  background: #584235; 
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #6b5244;
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #2a2a2a 25%, #353534 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255, 122, 0, 0.6);
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* Button hover effects */
+button, a {
+  transition: all 0.2s ease;
+}
+
+button:active, a:active {
+  transform: scale(0.98);
+}
+
+/* Input focus effects */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #353534 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}

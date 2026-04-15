@@ -61,25 +61,26 @@ etc.) to penalize wallets whose profits came from a single lucky bet.
 
 ## AVE Cloud Skill Integration
 
-AlphaMirror uses **11 endpoints across 2 skills**, all on the free API tier:
+AlphaMirror uses **12 endpoints across 2 skills**, all on the free API tier:
 
-### `data-rest` skill
+### `data-rest` skill (11 endpoints)
 
 | Endpoint | Used for |
 |---|---|
 | `smart_wallets` | Phase 1 discovery — AVE's built-in smart-money classifier |
 | `wallet_info` | Wallet age / anti-sybil check |
 | `wallet_tokens` | Current portfolio snapshot + polling diff |
-| `address_pnl` | (reserved for future per-token P&L drill-down) |
-| `search` | Token resolution by symbol |
-| `token` | Price / liquidity / volume lookup |
-| `kline-token` | Price context for monitored tokens |
+| `address_pnl` | Per-token P&L drill-down in wallet detail modal |
+| `address_txs` | Wallet activity history in drill-down view |
+| `search` | Token resolution by symbol in monitor page |
+| `token` | Token metadata in drill-down modal |
+| `kline_token` | 48h price chart visualization in token modal |
 | `risk` | Honeypot / tax / owner-permissions safety gate |
-| `trending` | Optional discovery context |
-| `address_txs` | Reserved for deeper forensics |
-| `txs` | Reserved for per-pair trade inspection |
+| `trending` | Live trending tokens discovery on monitor page |
+| `holders` | Top holder distribution in token analysis |
+| `txs` | Recent swap transactions in token modal |
 
-### `trade-chain-wallet` skill
+### `trade-chain-wallet` skill (1 endpoint)
 
 | Endpoint | Used for |
 |---|---|
@@ -91,7 +92,7 @@ Requires Python 3.10+ and an AVE Cloud API key (free tier — get one at
 [cloud.ave.ai](https://cloud.ave.ai)).
 
 ```bash
-# 1. Install
+# 1. Install Python dependencies
 pip install -r requirements.txt
 
 # 2. Configure
@@ -103,7 +104,24 @@ python -m alphamirror.cli run --chain bsc --top 5
 
 # 4. Or launch the Streamlit UI for the demo video look
 streamlit run app.py
+
+# 5. Or run the FastAPI backend + Next.js frontend (full integration)
+python server.py  # backend on port 8000
+cd frontend && npm install && npm run build && npm start  # frontend on port 3000
 ```
+
+### Next.js Frontend
+
+The `frontend/` directory contains a production-ready Next.js 14 application that
+demonstrates **all 12 AVE endpoints** in action:
+
+- **Landing page** (`/`) — Hero, features, endpoint showcase
+- **Dashboard** (`/dashboard`) — Full verification pipeline with drill-down modals
+  - Wallet detail modal uses `address_pnl` and `address_txs` for deep analysis
+  - Token detail modal uses `token`, `kline_token`, `holders`, `txs`, and `risk`
+- **Monitor** (`/monitor`) — Live polling + trending tokens discovery
+
+The frontend proxies `/api/*` requests to the FastAPI backend at `http://127.0.0.1:8000`.
 
 ### CLI subcommands
 
