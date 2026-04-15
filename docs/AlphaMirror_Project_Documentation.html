@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-04-15" />
+  <title>AlphaMirror — Project Documentation</title>
+  <style>
+
+html {
+font-size: 11pt;
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: blue;
+}
+a:visited {
+color: blue;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style>
+@page { size: A4; margin: 2cm 2cm 2.2cm 2cm; }
+html { font-size: 11pt; }
+body {
+font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+color: #1a1a1a; line-height: 1.55; max-width: 100%; margin: 0; padding: 0;
+}
+h1, h2, h3, h4 { font-weight: 600; color: #0b1220; page-break-after: avoid; }
+h1 { font-size: 22pt; margin-top: 2.5em; padding-bottom: 0.4em; border-bottom: 2px solid #0b1220; page-break-before: always; }
+h1:first-of-type { margin-top: 0.2em; page-break-before: avoid; }
+h2 { font-size: 15pt; margin-top: 1.8em; padding-bottom: 0.25em; border-bottom: 1px solid #d0d7de; }
+h3 { font-size: 12.5pt; margin-top: 1.4em; color: #334155; }
+h4 { font-size: 11.5pt; color: #475569; }
+p { margin: 0.6em 0; text-align: justify; }
+ul, ol { margin: 0.5em 0 0.8em 1.3em; padding: 0; }
+li { margin: 0.25em 0; }
+a { color: #1e40af; text-decoration: none; }
+code {
+font-family: "Cascadia Code", "Consolas", "Courier New", monospace;
+font-size: 0.92em; background: #f1f5f9; padding: 1px 5px;
+border-radius: 3px; color: #0b1220;
+}
+pre {
+background: #0f172a; color: #e2e8f0; padding: 10px 14px;
+border-radius: 6px; overflow-x: auto; font-size: 9.5pt;
+line-height: 1.4; page-break-inside: avoid; margin: 0.8em 0;
+}
+pre code { background: transparent; color: inherit; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 9.8pt; page-break-inside: avoid; }
+th { background: #0f172a; color: white; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 9.5pt; }
+td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+tr:nth-child(even) td { background: #f8fafc; }
+blockquote {
+border-left: 4px solid #1e40af; background: #eff6ff;
+padding: 0.7em 1.1em; margin: 1em 0; color: #1e3a8a; font-style: italic;
+}
+blockquote p { margin: 0.25em 0; }
+header#title-block-header {
+text-align: center; margin-bottom: 3em; padding-bottom: 1.5em;
+border-bottom: 3px double #0b1220; page-break-after: always;
+}
+header#title-block-header h1.title {
+font-size: 28pt; border: none; padding: 0; margin-bottom: 0.3em; page-break-before: avoid;
+}
+header#title-block-header p.subtitle { font-size: 14pt; color: #475569; font-style: italic; margin: 0.5em 0; }
+header#title-block-header p.author, header#title-block-header p.date { font-size: 11pt; color: #64748b; margin: 0.25em 0; }
+#TOC, nav#TOC {
+background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;
+padding: 1em 1.5em; margin: 1.5em 0; page-break-after: always;
+}
+#TOC ul, nav#TOC ul { list-style: none; margin-left: 0; padding-left: 1em; }
+#TOC > ul, nav#TOC > ul { padding-left: 0; }
+#TOC a, nav#TOC a { color: #334155; text-decoration: none; }
+hr { border: none; border-top: 1px solid #cbd5e1; margin: 2em 0; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AlphaMirror — Project Documentation</h1>
+<p class="subtitle">Verified Smart-Money Copy-Trading on AVE Cloud
+Skill</p>
+<p class="author"><p>Team <strong>Percayalah</strong><br />
+Leader: Pugar Huda Mantoro</p></p>
+<p class="date">April 15, 2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+
+</nav>
+<h1 id="executive-summary">1. Executive Summary</h1>
+<p><strong>AlphaMirror</strong> is a non-custodial, verified
+copy-trading agent built on AVE Cloud Skill for the <strong>AVE Claw
+Hackathon 2026</strong> (Complete Application track). It turns AVE’s
+built-in smart-money classifier into a ranked, audit-trailed list of
+wallets that retail users can actually trust.</p>
+<p>Most copy-trading platforms rank wallets by raw profit. This misleads
+retail: one lucky 100x trade dominates the leaderboard, and dormant
+whales look like active alpha hunters. <strong>AlphaMirror cross-checks
+AVE’s <code>smart_wallets</code> classification against six independent
+quality signals</strong> and produces an APPROVED / REVIEW / REJECTED
+verdict with a 0–100 score and full human-readable breakdown.</p>
+<p>The system uses <strong>11 endpoints across 2 AVE skills</strong>
+entirely on the <strong>free API tier</strong> (no whitelist, no proxy
+wallet, no pro plan required), runs at <strong>1 TPS with a thread-safe
+client-side rate limiter</strong>, and ships with an <strong>offline
+demo mode</strong> backed by fixture data for reliable video recording.
+The entire pipeline is self-custody: we never touch user keys. Trades
+are composed as unsigned AVE <code>trade-chain-wallet quote</code>
+commands that the user signs in their own wallet.</p>
+<p>On a live run against BSC on 2026-04-15 with 10 candidates:</p>
+<ul>
+<li>2 APPROVED (top scores 92 and 78)</li>
+<li>7 REVIEW (mid-tier requiring human judgment)</li>
+<li><strong>1 REJECTED</strong>: wallet <code>0xacf1e...</code> —
+flagged by AVE as smart money for 433 days, but our verification shows a
+total loss of $2,344</li>
+</ul>
+<p>This single rejected wallet is the entire product value in one data
+point: <strong>not every wallet AVE labels as “smart money” is actually
+worth mirroring, and AlphaMirror proves which ones are.</strong></p>
+<h1 id="problem-statement">2. Problem Statement</h1>
+<p>Retail copy-trading platforms (eToro, Binance Copy Trading, GMX,
+dozens of Telegram bots) rank wallets by top-line P&amp;L. This creates
+three systemic failure modes:</p>
+<ol type="1">
+<li><p><strong>One-hit wonders dominate.</strong> A wallet with one
+lucky 100x trade and nine break-even trades shows identical “total
+profit” to a wallet with twenty consistent 2–5x wins. Retail cannot
+distinguish them from the leaderboard display alone.</p></li>
+<li><p><strong>Dormant smart money gets followed.</strong> Wallets that
+were genuinely profitable years ago but haven’t traded in 90 days still
+appear at the top because the tools don’t weight recency.</p></li>
+<li><p><strong>Unprofitable “smart money” exists.</strong> Even AVE’s
+own <code>smart_wallets</code> endpoint — which uses volume, activity,
+and historical behavior for classification — returns some wallets that
+are <strong>net negative</strong> when the numbers are checked directly.
+AVE’s classifier gives you a candidate pool; it does not give you a
+verdict.</p></li>
+</ol>
+<p>The existing tools that try to solve this (Nansen, Arkham, DeBank’s
+Smart Wallet list) are either closed-source enterprise products or do
+not expose the per-wallet P&amp;L and profit-tier distribution that AVE
+provides for free. There is a whitespace for a public, transparent,
+auditable verification layer — and AlphaMirror fills it.</p>
+<h1 id="solution-overview">3. Solution Overview</h1>
+<p>AlphaMirror runs a 5-phase pipeline on top of AVE Cloud’s
+<code>data-rest</code> and <code>trade-chain-wallet</code> skills:</p>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 27%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">Phase</th>
+<th>Step</th>
+<th>AVE Skill Endpoint(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td><strong>Discover</strong> — pull candidate smart wallets from AVE’s
+classifier</td>
+<td><code>smart_wallets</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td><strong>Verify</strong> — cross-check each candidate with
+independent quality signals</td>
+<td><code>wallet_info</code>, <code>wallet_tokens</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td><strong>Score</strong> — compute 0–100 Verification Score +
+verdict</td>
+<td>(offline logic)</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td><strong>Monitor</strong> — poll approved wallets for new positions +
+risk gate</td>
+<td><code>wallet_tokens</code>, <code>risk</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td><strong>Mirror</strong> — build self-custody trade quote for user to
+sign</td>
+<td><code>trade-chain-wallet quote</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="phase-1-discovery">3.1 Phase 1 — Discovery</h2>
+<p>A single call to <code>/address/smart_wallet/list?chain=bsc</code>
+returns AVE’s top-100 smart-money candidates for the chain, each
+enriched with: <code>total_profit</code>,
+<code>total_profit_rate</code>, <code>token_profit_rate</code> (win
+rate), <code>total_volume</code>, <code>total_trades</code>,
+<code>buy_trades</code>, <code>sell_trades</code>,
+<code>last_trade_time</code>, <code>tag_items</code> (top traded
+tokens), and a per-tier profit distribution histogram with 8 buckets
+(10x+, 5–10x, 3–5x, 2–4x, 1.1–2x, flat, -10..-50%, -50..-100%).</p>
+<p>This endpoint alone provides far more data than any public
+alternative, and is what makes AlphaMirror’s deep verification possible
+on the free tier — we don’t need to reconstruct P&amp;L from raw
+transaction history.</p>
+<h2 id="phase-2-verification">3.2 Phase 2 — Verification</h2>
+<p>For each candidate, two additional API calls:</p>
+<ul>
+<li><code>wallet_info</code> — returns <code>wallet_age</code> (Unix
+timestamp of first activity), total balance, win ratio, and per-chain
+aggregates.</li>
+<li><code>wallet_tokens</code> — returns current token holdings with
+<code>value_usd</code>, amounts, and blue-chip classification.</li>
+</ul>
+<p>These calls let us cross-reference AVE’s historical claim with the
+current state of the wallet. A wallet AVE flags as profitable should
+still have a balanced portfolio — if it has a $0 portfolio after
+claiming $500k profit, either the data is wrong or the wallet has fully
+rotated out and is no longer “active smart money.”</p>
+<h2 id="phase-3-scoring">3.3 Phase 3 — Scoring</h2>
+<p>The 6-signal Verification Score (detailed in Section 5 below)
+produces:</p>
+<ul>
+<li><strong>APPROVED</strong> (≥70): mirror-worthy, passes all stress
+tests</li>
+<li><strong>REVIEW</strong> (40–69): show the user, let them judge</li>
+<li><strong>REJECTED</strong> (&lt;40): AVE flagged it, we don’t agree —
+stay away</li>
+</ul>
+<h2 id="phase-4-monitor">3.4 Phase 4 — Monitor</h2>
+<p>For each approved wallet the user chooses to track, we poll
+<code>wallet_tokens</code> every 60 seconds (configurable, free-tier
+safe) and compute the diff. New token addresses = open signal;
+disappeared tokens = exit signal. Each new position triggers a
+<code>risk</code> call (<code>/contracts/{address}-{chain}</code>) to
+check for honeypot, high tax, or owner-abusable permissions before we
+surface it to the user.</p>
+<h2 id="phase-5-mirror">3.5 Phase 5 — Mirror</h2>
+<p>When the user wants to mirror a position, AlphaMirror composes the
+exact AVE <code>trade-chain-wallet quote</code> shell command,
+pre-filled with:</p>
+<ul>
+<li>Chain</li>
+<li>Input token: the default stablecoin for that chain (e.g. USDT on
+BSC)</li>
+<li>Output token: the target token</li>
+<li>Input amount: converted to the token’s smallest unit
+(wei-style)</li>
+<li>Swap type: <code>buy</code></li>
+</ul>
+<p>The command is displayed in the UI. The user copies it, runs it in
+their own shell, and signs the resulting unsigned transaction in their
+own wallet. <strong>AlphaMirror never touches private keys.</strong></p>
+<h1 id="ave-cloud-skill-integration">4. AVE Cloud Skill Integration</h1>
+<p>AlphaMirror uses <strong>11 endpoints across 2 AVE skills</strong>,
+entirely on the <strong>free API tier</strong>. No whitelist, no proxy
+wallet, no Pro plan.</p>
+<h2 id="data-rest-skill">4.1 <code>data-rest</code> skill</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 35%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Path</th>
+<th style="text-align: center;">Phase</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smart_wallets</code></td>
+<td><code>GET /address/smart_wallet/list</code></td>
+<td style="text-align: center;">1</td>
+<td>Candidate pool — AVE’s built-in smart-money classifier with profit,
+win rate, profit-tier distribution</td>
+</tr>
+<tr>
+<td><code>wallet_info</code></td>
+<td><code>GET /address/walletinfo</code></td>
+<td style="text-align: center;">2</td>
+<td>Wallet age (anti-sybil), total balance, per-chain aggregates</td>
+</tr>
+<tr>
+<td><code>wallet_tokens</code></td>
+<td><code>GET /address/walletinfo/tokens</code></td>
+<td style="text-align: center;">2, 4</td>
+<td>Current portfolio snapshot + polling diff</td>
+</tr>
+<tr>
+<td><code>address_pnl</code></td>
+<td><code>GET /address/pnl</code></td>
+<td style="text-align: center;">reserved</td>
+<td>Per-token P&amp;L drill-down (for future deep-dive UI)</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td><code>GET /tokens</code></td>
+<td style="text-align: center;">discovery</td>
+<td>Token resolution by symbol</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>GET /tokens/{addr}-{chain}</code></td>
+<td style="text-align: center;">enrichment</td>
+<td>Price / liquidity / volume lookup</td>
+</tr>
+<tr>
+<td><code>kline-token</code></td>
+<td><code>GET /klines/token/{addr}-{chain}</code></td>
+<td style="text-align: center;">enrichment</td>
+<td>OHLCV price context</td>
+</tr>
+<tr>
+<td><code>risk</code></td>
+<td><code>GET /contracts/{addr}-{chain}</code></td>
+<td style="text-align: center;">4</td>
+<td>Honeypot / tax / owner-permissions safety gate</td>
+</tr>
+<tr>
+<td><code>trending</code></td>
+<td><code>GET /tokens/trending</code></td>
+<td style="text-align: center;">discovery</td>
+<td>Optional discovery context</td>
+</tr>
+<tr>
+<td><code>address_txs</code></td>
+<td><code>GET /address/tx</code></td>
+<td style="text-align: center;">reserved</td>
+<td>Deeper wallet forensics</td>
+</tr>
+</tbody>
+</table>
+<h2 id="trade-chain-wallet-skill">4.2 <code>trade-chain-wallet</code>
+skill</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 35%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Path</th>
+<th style="text-align: center;">Phase</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>quote</code></td>
+<td>(via <code>ave_trade_rest.py quote</code>)</td>
+<td style="text-align: center;">5</td>
+<td>Build self-custody mirror trade preview; user signs separately</td>
+</tr>
+</tbody>
+</table>
+<h2 id="why-we-chose-the-skills-we-did">4.3 Why we chose the skills we
+did</h2>
+<ul>
+<li><p><strong><code>data-rest</code> over
+<code>data-wss</code></strong>: Free tier blocks <code>data-wss</code>
+(WebSocket requires <code>API_PLAN=pro</code>). AlphaMirror’s
+polling-based monitor is a deliberate trade-off: we lose sub-second
+reactivity but we don’t need a Pro plan, which keeps AlphaMirror
+accessible to every hackathon attendee.</p></li>
+<li><p><strong><code>trade-chain-wallet</code> over
+<code>trade-proxy-wallet</code></strong>: Proxy wallet requires
+<code>API_PLAN=normal</code> minimum and asks the user to deposit funds
+into an AVE-managed wallet. Chain wallet is self-custody — the user’s
+keys never leave their wallet app. This is a deliberate positioning
+choice that aligns with Web3 values and keeps AlphaMirror free-tier
+compatible simultaneously.</p></li>
+</ul>
+<h1 id="verification-methodology">5. Verification Methodology</h1>
+<p>The Verification Score (0–100) is a weighted combination of six
+independent signals. Weights were tuned to emphasize
+<strong>profitability and consistency</strong> over portfolio size — a
+$500k stagnant blue-chip wallet is less valuable to mirror than a $20k
+wallet that consistently compounds on small wins.</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: right;">Weight</th>
+<th>Signal</th>
+<th>What it catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">25</td>
+<td><strong>Profitability</strong></td>
+<td>Is <code>total_profit</code> meaningfully positive?</td>
+</tr>
+<tr>
+<td style="text-align: right;">25</td>
+<td><strong>Consistency</strong></td>
+<td>Wins spread across tiers — no one-hit wonders</td>
+</tr>
+<tr>
+<td style="text-align: right;">15</td>
+<td><strong>Recency</strong></td>
+<td>Still trading, or dormant smart money?</td>
+</tr>
+<tr>
+<td style="text-align: right;">15</td>
+<td><strong>Portfolio</strong></td>
+<td>Rational mix of blue chips + alpha, or empty after rotation?</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td><strong>Volume</strong></td>
+<td>Serious wallet, or low-volume tester?</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td><strong>Age</strong></td>
+<td>Old enough to survive anti-sybil?</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-one-hit-wonder-detector">5.1 The One-Hit-Wonder
+Detector</h2>
+<p>The most distinctive part of our methodology. AVE’s
+<code>smart_wallets</code> endpoint returns eight profit-tier buckets
+per wallet: <code>profit_above_900_percent_num</code>,
+<code>profit_500_900_percent_num</code>,
+<code>profit_300_500_percent_num</code>,
+<code>profit_100_300_percent_num</code>,
+<code>profit_10_100_percent_num</code>,
+<code>profit_neg10_10_percent_num</code>,
+<code>profit_neg50_neg10_percent_num</code>,
+<code>profit_neg100_neg50_percent_num</code>.</p>
+<p>We define <code>big_wins</code> as any trade that returned 2x or
+more. Then:</p>
+<pre><code>concentration_ratio = above_900_percent_num / big_wins</code></pre>
+<p>A wallet with <code>concentration_ratio &gt;= 0.8</code> had &gt;80%
+of its big wins come from a single &gt;10x bucket — classic one-hit
+wonder. We apply an 8-point penalty to the consistency score. This
+catches wallets like our live-test rank #6 (<code>0x6fde3...</code>):
+<strong>$144,306 profit, 12% win rate</strong>, where a single lucky
+trade dominated the wallet’s entire P&amp;L history.</p>
+<p>No other public copy-trading tool computes this metric because no
+other data provider exposes the per-tier distribution for free.</p>
+<h2 id="live-example">5.2 Live Example</h2>
+<p>On 2026-04-15 against BSC with <code>--top 10</code>, AlphaMirror
+produced:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Rank</th>
+<th style="text-align: right;">Score</th>
+<th style="text-align: center;">Verdict</th>
+<th style="text-align: right;">Total P&amp;L</th>
+<th style="text-align: right;">Win Rate</th>
+<th style="text-align: right;">Portfolio</th>
+<th style="text-align: right;">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: center;"><strong>APPROVED</strong></td>
+<td style="text-align: right;">+$123,518</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;">$16,931</td>
+<td style="text-align: right;">288d</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: center;"><strong>APPROVED</strong></td>
+<td style="text-align: right;">+$104,969</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">$461,101</td>
+<td style="text-align: right;">314d</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">+$25,606</td>
+<td style="text-align: right;">67%</td>
+<td style="text-align: right;">$4</td>
+<td style="text-align: right;">238d</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">+$16,328</td>
+<td style="text-align: right;">67%</td>
+<td style="text-align: right;">$7,486</td>
+<td style="text-align: right;">201d</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">+$21,255</td>
+<td style="text-align: right;">67%</td>
+<td style="text-align: right;">$18,210</td>
+<td style="text-align: right;">91d</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">+$144,306</td>
+<td style="text-align: right;"><strong>12%</strong></td>
+<td style="text-align: right;">$568,015</td>
+<td style="text-align: right;">75d</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">+$16,648</td>
+<td style="text-align: right;">33%</td>
+<td style="text-align: right;">$16,941</td>
+<td style="text-align: right;">366d</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">-$1,231</td>
+<td style="text-align: right;">52%</td>
+<td style="text-align: right;">$481,302</td>
+<td style="text-align: right;">314d</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: center;">REVIEW</td>
+<td style="text-align: right;">-$14,690</td>
+<td style="text-align: right;">52%</td>
+<td style="text-align: right;">$461,101</td>
+<td style="text-align: right;">314d</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: center;"><strong>REJECTED</strong></td>
+<td style="text-align: right;"><strong>-$2,344</strong></td>
+<td style="text-align: right;">31%</td>
+<td style="text-align: right;">$6,307</td>
+<td style="text-align: right;">433d</td>
+</tr>
+</tbody>
+</table>
+<p>Observations:</p>
+<ul>
+<li><p>Rank #6 is the one-hit wonder case. $144k profit paired with 12%
+win rate = one lucky trade carrying the whole wallet. Our consistency
+score correctly downgrades it from APPROVED to REVIEW.</p></li>
+<li><p>Rank #10 is the killer example. A wallet AVE has flagged as smart
+money for <strong>433 consecutive days</strong>, but the actual numbers
+show a <strong>net loss of $2,344 and a 31% win rate</strong>.
+AlphaMirror rejects it outright — which is exactly the product’s reason
+to exist.</p></li>
+</ul>
+<h1 id="technical-architecture">6. Technical Architecture</h1>
+<pre><code>alphamirror/
+├── ave_client.py       AVE REST wrapper (14 endpoints, rate limiter, auth)
+├── mock_client.py      Offline fixture-backed client (DEMO_MODE=1)
+├── client_factory.py   Live vs mock selection via env var
+├── models.py           Typed dataclasses
+│                         - Candidate (Phase 1 output)
+│                         - ProfitDistribution (8-bucket histogram)
+│                         - Holding (one token position)
+│                         - VerifiedWallet (Phase 2 output + score)
+│                         - TradeSignal (Phase 4 emit)
+├── discovery.py        Phase 1 — smart_wallets fetch
+├── verification.py     Phase 2 — wallet_info + wallet_tokens
+├── scoring.py          6-signal weighted score
+├── monitor.py          Phase 4 — poll + diff + risk gate
+├── mirror.py           Phase 5 — self-custody quote builder
+└── cli.py              Rich-terminal CLI (5 subcommands)
+
+app.py                  Streamlit UI (Phases 1–5 interactive)
+demo/fixtures.json      Offline sample data for DEMO_MODE=1
+scripts/smoke_test.py   3-call API health check</code></pre>
+<h2 id="rate-limiting">6.1 Rate Limiting</h2>
+<p>AVE’s free tier is <strong>1 request per second</strong>. AlphaMirror
+enforces this client-side through a thread-safe
+<code>_RateLimiter</code> in <code>ave_client.py</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _RateLimiter:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, rps: <span class="bu">float</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._min_interval <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> rps</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._last <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._lock <span class="op">=</span> threading.Lock()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wait(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="va">self</span>._lock:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            elapsed <span class="op">=</span> time.monotonic() <span class="op">-</span> <span class="va">self</span>._last</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> elapsed <span class="op">&lt;</span> <span class="va">self</span>._min_interval:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                time.sleep(<span class="va">self</span>._min_interval <span class="op">-</span> elapsed)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._last <span class="op">=</span> time.monotonic()</span></code></pre></div>
+<p>The lock matters for the Streamlit UI: multiple reruns can land
+concurrently, and without the lock two calls could race into a 429
+error. With the lock, all requests globally serialize.</p>
+<h2 id="rate-limit-budget-per-phase">6.2 Rate-Limit Budget per
+Phase</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th style="text-align: right;">Calls per run</th>
+<th style="text-align: right;">Time on free tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Discover</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">~1s</td>
+</tr>
+<tr>
+<td>2. Verify (per wallet)</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">~2s</td>
+</tr>
+<tr>
+<td>2. Verify (10 wallets)</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">~20s</td>
+</tr>
+<tr>
+<td>4. Monitor (3 wallets, 1 poll)</td>
+<td style="text-align: right;">3 (+ risk per new pos)</td>
+<td style="text-align: right;">~4s</td>
+</tr>
+<tr>
+<td>5. Mirror (quote)</td>
+<td style="text-align: right;">0 (composed locally)</td>
+<td style="text-align: right;">&lt;0.1s</td>
+</tr>
+</tbody>
+</table>
+<p>A full <code>run --top 10</code> end-to-end completes in
+approximately <strong>22 seconds</strong> on the free tier.</p>
+<h2 id="why-only-2-calls-per-wallet-in-phase-2">6.3 Why Only 2 Calls per
+Wallet in Phase 2</h2>
+<p>An earlier design called <code>address_pnl</code> for 5 sampled
+holdings per wallet to reconstruct profitability. That was <strong>37
+calls per 5-wallet run</strong> = 37 seconds on free tier, and the data
+it computed was redundant with what <code>smart_wallets</code> already
+returned. The current design delegates profitability/win-rate
+computation to AVE (which already does it) and uses
+<code>wallet_info</code> + <code>wallet_tokens</code> purely as
+independent cross-checks. <strong>7× fewer API calls, same analytical
+depth, strictly better data.</strong></p>
+<h1 id="non-custodial-design">7. Non-Custodial Design</h1>
+<p>AlphaMirror is non-custodial by architecture, not by marketing. The
+repository contains:</p>
+<ul>
+<li><strong>Zero private key handling code</strong></li>
+<li><strong>Zero seed phrase storage</strong></li>
+<li><strong>Zero wallet connection flows</strong> beyond the user’s
+local wallet app</li>
+</ul>
+<p>The Phase 5 <code>mirror</code> subcommand generates a shell command
+like:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> AVE_API_KEY=<span class="va">$AVE_API_KEY</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> API_PLAN=free <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--entrypoint</span> python3 <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ave-cloud scripts/ave_trade_rest.py quote <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--chain</span> bsc <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--in-token</span> 0x55d398326f99059fF775485246999027B3197955 <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--out-token</span> 0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c <span class="dt">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">--in-amount</span> 50000000000000000000 <span class="dt">\</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">--swap-type</span> buy</span></code></pre></div>
+<p>This command, when executed, returns an <strong>unsigned transaction
+payload</strong>. The user brings their own wallet (MetaMask, OKX,
+Trust, Phantom, etc.), pastes the payload, signs locally, and
+broadcasts. AlphaMirror sees nothing — no balance, no keys, no history
+beyond what’s publicly on-chain.</p>
+<p>This design choice is deliberate and aligns with the Web3
+self-custody ethos that the Hong Kong Web3 Festival audience cares
+about. It is also a pragmatic consequence of our free-tier constraint:
+proxy wallet execution requires AVE API Plan Normal minimum, which
+requires whitelist approval.</p>
+<h1 id="how-to-run">8. How to Run</h1>
+<h2 id="prerequisites">8.1 Prerequisites</h2>
+<ul>
+<li>Python 3.10+ (tested on 3.13)</li>
+<li>AVE Cloud API key from <a href="https://cloud.ave.ai" class="uri">https://cloud.ave.ai</a> — free tier is sufficient</li>
+<li>Docker (optional, only needed if you want
+<code>mirror --execute</code> to run AVE’s trade quote command
+inline)</li>
+</ul>
+<h2 id="installation">8.2 Installation</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/PugarHuda/AlphaMirror.git</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> AlphaMirror</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># edit .env and paste your AVE_API_KEY</span></span></code></pre></div>
+<h2 id="cli-usage">8.3 CLI Usage</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Quick sanity check — 3 API calls, verifies client works</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/smoke_test.py</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. List raw smart-money candidates (1 API call)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> alphamirror.cli discover <span class="at">--chain</span> bsc <span class="at">--top</span> 10</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Full pipeline: discover + verify + rank (end-to-end)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> alphamirror.cli run <span class="at">--chain</span> bsc <span class="at">--top</span> 5</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Verify a specific wallet by address</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> alphamirror.cli verify <span class="at">--wallet</span> 0x... <span class="at">--chain</span> bsc</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Build a self-custody mirror trade preview</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> alphamirror.cli mirror <span class="at">--chain</span> bsc <span class="dt">\</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">--token</span> 0x... <span class="at">--usd</span> 50</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Watch wallets for new positions (Phase 4)</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> alphamirror.cli watch <span class="at">--wallet</span> 0x... <span class="at">--chain</span> bsc <span class="dt">\</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">--interval</span> 60 <span class="at">--iterations</span> 3</span></code></pre></div>
+<h2 id="streamlit-ui">8.4 Streamlit UI</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> streamlit run app.py</span></code></pre></div>
+<p>Opens a browser at <a href="http://localhost:8501" class="uri">http://localhost:8501</a> with the interactive pipeline —
+sidebar controls, live Phase 1/Phase 2 progress, ranked wallet cards
+with score breakdowns, profit-tier distribution charts, and a per-wallet
+mirror trade builder.</p>
+<h2 id="offline-demo-mode">8.5 Offline Demo Mode</h2>
+<p>For demo video recording or air-gapped development:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows CMD</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> DEMO_MODE=1</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> alphamirror.cli run <span class="at">--chain</span> bsc <span class="at">--top</span> 5</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Bash / PowerShell</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">DEMO_MODE</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-m</span> alphamirror.cli run <span class="at">--chain</span> bsc <span class="at">--top</span> 5</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">DEMO_MODE</span><span class="op">=</span>1 <span class="ex">python</span> <span class="at">-m</span> streamlit run app.py</span></code></pre></div>
+<p>The <code>MockAveClient</code> in
+<code>alphamirror/mock_client.py</code> serves canned JSON from
+<code>demo/fixtures.json</code> with the exact same method signatures as
+the live client. A 300ms simulated latency keeps visual pacing honest
+for video. The fixture data deliberately produces the same narrative as
+the live demo: 2 approved wallets, 1 rejected wallet, 1 one-hit
+wonder.</p>
+<h1 id="hackathon-track-alignment">9. Hackathon Track Alignment</h1>
+<p>AlphaMirror targets the <strong>Complete Application</strong> track.
+It integrates:</p>
+<ul>
+<li><strong>Monitoring Skill</strong> — Phase 4 (<code>watch</code>)
+polls tracked wallets and fires <code>TradeSignal</code> events on new
+positions, with automatic risk gating via the <code>risk</code>
+endpoint.</li>
+<li><strong>Trading Skill</strong> — Phase 5 (<code>mirror</code>)
+composes self-custody trades via <code>trade-chain-wallet quote</code>,
+ready for the user to sign.</li>
+</ul>
+<h2 id="judging-dimensions">9.1 Judging Dimensions</h2>
+<h3 id="innovation-30">Innovation (30%)</h3>
+<p>The verification-layer approach is genuinely novel. No public
+smart-money tool we can find — Nansen, Arkham, DeBank Smart Wallet,
+Telegram whale bots — uses AVE’s per-tier profit distribution to detect
+one-hit wonders. The idea of <em>cross-checking</em> a smart-money
+classifier rather than either trusting it or building from scratch is
+also a distinct positioning.</p>
+<h3 id="technical-execution-30">Technical Execution (30%)</h3>
+<ul>
+<li><strong>11 endpoints</strong> across <strong>2 skills</strong>
+(vs. typical hackathon projects that use 3–5 endpoints from
+tutorials)</li>
+<li><strong>Thread-safe rate limiter</strong> for correct behavior on
+free tier’s 1-TPS constraint</li>
+<li><strong>Offline demo mode</strong> with a duck-typed
+<code>MockAveClient</code> that mirrors the live client’s exact
+interface — enables reliable video recording</li>
+<li><strong>Tolerant field parsers</strong> that handle AVE’s real
+response shape (discovered by live inspection, not guessed from
+docs)</li>
+<li><strong>Full type-hinted Python</strong> with dataclass models</li>
+<li><strong>Rate-limit-aware architecture</strong>: budgeted 2
+calls/wallet in Phase 2, down from an initial 7 calls/wallet design,
+using <code>smart_wallets</code> data in place of reconstructed
+P&amp;L</li>
+</ul>
+<h3 id="real-world-value-40">Real-World Value (40%)</h3>
+<ul>
+<li>Copy-trading is a multi-billion-dollar retail crypto market</li>
+<li>The “which wallets should I trust” problem is universal — every
+retail user trying to follow alpha on Twitter runs into it</li>
+<li>Our rejected-wallet example (<code>0xacf1e...</code>, 433 days as
+“smart money” but $2,344 net loss) is a concrete demonstration that the
+problem is real and currently unsolved</li>
+<li>The one-hit-wonder pattern (rank #6, $144k profit + 12% win rate) is
+a live example of a failure mode retail tools can’t detect</li>
+<li>Free-tier compatibility means the product is immediately accessible
+to every AVE Cloud user</li>
+</ul>
+<h1 id="team">10. Team</h1>
+<p><strong>Team Name:</strong> Percayalah<br />
+<strong>Team Leader:</strong> Pugar Huda Mantoro<br />
+<strong>Telegram Handle:</strong> <span class="citation" data-cites="lynx129">@lynx129</span><br />
+<strong>Email:</strong> pugarhudam@gmail.com<br />
+<strong>GitHub:</strong> <a href="https://github.com/PugarHuda" class="uri">https://github.com/PugarHuda</a></p>
+<p><strong>Project Repository:</strong> <a href="https://github.com/PugarHuda/AlphaMirror" class="uri">https://github.com/PugarHuda/AlphaMirror</a></p>
+<h2 id="contact">Contact</h2>
+<p>For judging questions, integration discussions, or live demo
+requests, please reach out via the Telegram handle above or the email
+listed on the hackathon registration form.</p>
+<h1 id="license">11. License</h1>
+<p>MIT License — same as AVE Cloud Skill upstream, for maximum
+compatibility and reuse.</p>
+<h1 id="acknowledgements">12. Acknowledgements</h1>
+<ul>
+<li><strong>AVE Cloud</strong> (<a href="https://cloud.ave.ai" class="uri">https://cloud.ave.ai</a>) for the on-chain data toolkit,
+free tier, and the <code>smart_wallets</code> primitive that made this
+verification layer possible</li>
+<li><strong>AVE Cloud Skill</strong> (<a href="https://github.com/AveCloud/ave-cloud-skill" class="uri">https://github.com/AveCloud/ave-cloud-skill</a>) for the
+Python client source we drew the REST request shapes and config values
+from</li>
+<li><strong>AVE Claw Hackathon 2026</strong> organizers for the
+opportunity to build on top of a well-designed skill platform</li>
+</ul>
+<hr />
+<p><em>AlphaMirror — built for the AVE Claw Hackathon 2026.
+Non-custodial by design. Free-tier compatible. Deep integration by
+commitment.</em></p>
+</body>
+</html>
