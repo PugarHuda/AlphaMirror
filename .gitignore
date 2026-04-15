@@ -1,0 +1,13 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.cache/
+.pytest_cache/
+.streamlit/
+*.log
+.DS_Store
+.claude/
+*.bak
+*.tmp

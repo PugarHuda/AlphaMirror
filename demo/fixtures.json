@@ -1,0 +1,133 @@
+{
+  "_comment": "Realistic sample data used by MockAveClient when DEMO_MODE=1. Field shapes follow AVE API conventions as inferred from source. Edit freely — the demo script reads from here.",
+
+  "smart_wallets": {
+    "bsc": [
+      {
+        "wallet_address": "0x4b9c0f2e8d3a5f7c1b2d8e4f6a9c5d3b1e2f4a6c",
+        "pnl_7d": 28400,
+        "pnl_30d": 87200,
+        "win_rate": 0.67,
+        "label": "alpha hunter"
+      },
+      {
+        "wallet_address": "0x9d8e7c6b5a4f3e2d1c9b8a7f6e5d4c3b2a1f0e9d",
+        "pnl_7d": -2100,
+        "pnl_30d": 4300,
+        "win_rate": 0.42,
+        "label": "bronze"
+      },
+      {
+        "wallet_address": "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b",
+        "pnl_7d": 15800,
+        "pnl_30d": 48600,
+        "win_rate": 0.72,
+        "label": "verified"
+      },
+      {
+        "wallet_address": "0xdeadbeef11112222333344445555666677778888",
+        "pnl_7d": -850,
+        "pnl_30d": -12400,
+        "win_rate": 0.31,
+        "label": "rekt"
+      },
+      {
+        "wallet_address": "0xc0ffee1234567890abcdef1234567890abcdef12",
+        "pnl_7d": 9300,
+        "pnl_30d": 22100,
+        "win_rate": 0.58,
+        "label": "swing"
+      }
+    ]
+  },
+
+  "wallet_info": {
+    "0x4b9c0f2e8d3a5f7c1b2d8e4f6a9c5d3b1e2f4a6c": {"age_days": 412, "label": "alpha hunter"},
+    "0x9d8e7c6b5a4f3e2d1c9b8a7f6e5d4c3b2a1f0e9d": {"age_days": 58, "label": "bronze"},
+    "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b": {"age_days": 301, "label": "verified"},
+    "0xdeadbeef11112222333344445555666677778888": {"age_days": 14, "label": "rekt"},
+    "0xc0ffee1234567890abcdef1234567890abcdef12": {"age_days": 187, "label": "swing"}
+  },
+
+  "wallet_tokens": {
+    "0x4b9c0f2e8d3a5f7c1b2d8e4f6a9c5d3b1e2f4a6c": [
+      {"token_address": "0x55d398326f99059ff775485246999027b3197955", "symbol": "USDT", "value_usd": 42000, "balance": 42000, "is_blue_chip": true},
+      {"token_address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8", "symbol": "ETH", "value_usd": 31000, "balance": 9.2, "is_blue_chip": true},
+      {"token_address": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c", "symbol": "BTCB", "value_usd": 18500, "balance": 0.19, "is_blue_chip": true},
+      {"token_address": "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555", "symbol": "ALPHA", "value_usd": 12300, "balance": 150000, "is_blue_chip": false},
+      {"token_address": "0xbbbbb222cccc3333dddd4444eeee5555ffff6666", "symbol": "GEMZ", "value_usd": 8900, "balance": 44000, "is_blue_chip": false},
+      {"token_address": "0xccccc333dddd4444eeee5555ffff666611117777", "symbol": "MOON", "value_usd": 5100, "balance": 210000, "is_blue_chip": false}
+    ],
+    "0x9d8e7c6b5a4f3e2d1c9b8a7f6e5d4c3b2a1f0e9d": [
+      {"token_address": "0xffff777788889999aaaabbbbccccddddeeee1111", "symbol": "GAMBLE", "value_usd": 3200, "balance": 120000, "is_blue_chip": false},
+      {"token_address": "0x1111eeee2222dddd3333cccc4444bbbb5555aaaa", "symbol": "APES", "value_usd": 1800, "balance": 82000, "is_blue_chip": false}
+    ],
+    "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b": [
+      {"token_address": "0x55d398326f99059ff775485246999027b3197955", "symbol": "USDT", "value_usd": 28000, "balance": 28000, "is_blue_chip": true},
+      {"token_address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8", "symbol": "ETH", "value_usd": 19500, "balance": 5.8, "is_blue_chip": true},
+      {"token_address": "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555", "symbol": "ALPHA", "value_usd": 8700, "balance": 106000, "is_blue_chip": false},
+      {"token_address": "0xbbbbb222cccc3333dddd4444eeee5555ffff6666", "symbol": "GEMZ", "value_usd": 6400, "balance": 31000, "is_blue_chip": false}
+    ],
+    "0xdeadbeef11112222333344445555666677778888": [
+      {"token_address": "0xffff777788889999aaaabbbbccccddddeeee1111", "symbol": "GAMBLE", "value_usd": 420, "balance": 15000, "is_blue_chip": false}
+    ],
+    "0xc0ffee1234567890abcdef1234567890abcdef12": [
+      {"token_address": "0x55d398326f99059ff775485246999027b3197955", "symbol": "USDT", "value_usd": 12000, "balance": 12000, "is_blue_chip": true},
+      {"token_address": "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555", "symbol": "ALPHA", "value_usd": 7200, "balance": 87000, "is_blue_chip": false},
+      {"token_address": "0xbbbbb222cccc3333dddd4444eeee5555ffff6666", "symbol": "GEMZ", "value_usd": 3400, "balance": 17000, "is_blue_chip": false},
+      {"token_address": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c", "symbol": "BTCB", "value_usd": 5800, "balance": 0.06, "is_blue_chip": true}
+    ]
+  },
+
+  "address_pnl": {
+    "0x4b9c0f2e8d3a5f7c1b2d8e4f6a9c5d3b1e2f4a6c": {
+      "0x55d398326f99059ff775485246999027b3197955": {"realized_pnl": 0, "unrealized_pnl": 0},
+      "0x2170ed0880ac9a755fd29b2688956bd959f933f8": {"realized_pnl": 4200, "unrealized_pnl": 8800},
+      "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c": {"realized_pnl": 1800, "unrealized_pnl": 2200},
+      "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555": {"realized_pnl": 14200, "unrealized_pnl": 5100},
+      "0xbbbbb222cccc3333dddd4444eeee5555ffff6666": {"realized_pnl": 6700, "unrealized_pnl": 3200},
+      "0xccccc333dddd4444eeee5555ffff666611117777": {"realized_pnl": -1100, "unrealized_pnl": 800}
+    },
+    "0x9d8e7c6b5a4f3e2d1c9b8a7f6e5d4c3b2a1f0e9d": {
+      "0xffff777788889999aaaabbbbccccddddeeee1111": {"realized_pnl": -3400, "unrealized_pnl": -1800},
+      "0x1111eeee2222dddd3333cccc4444bbbb5555aaaa": {"realized_pnl": -2100, "unrealized_pnl": 400}
+    },
+    "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b": {
+      "0x55d398326f99059ff775485246999027b3197955": {"realized_pnl": 0, "unrealized_pnl": 0},
+      "0x2170ed0880ac9a755fd29b2688956bd959f933f8": {"realized_pnl": 3100, "unrealized_pnl": 4200},
+      "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555": {"realized_pnl": 9800, "unrealized_pnl": 2100},
+      "0xbbbbb222cccc3333dddd4444eeee5555ffff6666": {"realized_pnl": 5200, "unrealized_pnl": 1100}
+    },
+    "0xdeadbeef11112222333344445555666677778888": {
+      "0xffff777788889999aaaabbbbccccddddeeee1111": {"realized_pnl": -8400, "unrealized_pnl": -3200}
+    },
+    "0xc0ffee1234567890abcdef1234567890abcdef12": {
+      "0x55d398326f99059ff775485246999027b3197955": {"realized_pnl": 0, "unrealized_pnl": 0},
+      "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555": {"realized_pnl": 4100, "unrealized_pnl": 1800},
+      "0xbbbbb222cccc3333dddd4444eeee5555ffff6666": {"realized_pnl": 1600, "unrealized_pnl": -300},
+      "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c": {"realized_pnl": 900, "unrealized_pnl": 1100}
+    }
+  },
+
+  "risk": {
+    "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555": {"is_honeypot": false, "buy_tax": 1, "sell_tax": 1, "symbol": "ALPHA"},
+    "0xbbbbb222cccc3333dddd4444eeee5555ffff6666": {"is_honeypot": false, "buy_tax": 3, "sell_tax": 3, "symbol": "GEMZ"},
+    "0xccccc333dddd4444eeee5555ffff666611117777": {"is_honeypot": false, "buy_tax": 0, "sell_tax": 0, "symbol": "MOON"},
+    "0xffff777788889999aaaabbbbccccddddeeee1111": {"is_honeypot": true, "buy_tax": 0, "sell_tax": 99, "symbol": "GAMBLE"},
+    "0x9999888877776666555544443333222211110000": {"is_honeypot": false, "buy_tax": 2, "sell_tax": 2, "symbol": "NEWGEM"}
+  },
+
+  "search": {
+    "PEPE": [
+      {"address": "0x25d887Ce7a35172C62FeBFD67a1856F20FaEbB00", "chain": "bsc", "symbol": "PEPE", "name": "Pepe"},
+      {"address": "0x6982508145454ce325ddbe47a25d4ec3d2311933", "chain": "eth", "symbol": "PEPE", "name": "Pepe"}
+    ]
+  },
+
+  "trending": {
+    "bsc": [
+      {"address": "0xaaaaa111bbbb2222cccc3333dddd4444eeee5555", "symbol": "ALPHA", "price_change_24h": 34.2},
+      {"address": "0xbbbbb222cccc3333dddd4444eeee5555ffff6666", "symbol": "GEMZ", "price_change_24h": 18.7}
+    ]
+  }
+}
