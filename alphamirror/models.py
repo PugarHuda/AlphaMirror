@@ -235,15 +235,27 @@ def _i(v) -> int:
 
 
 def _parse_time(v) -> Optional[datetime]:
+    """
+    Parse a timestamp value into a UTC datetime.
+
+    AVE returns the sentinel "0001-01-01T00:00:00Z" for wallets with no
+    last-trade data — we treat anything before 2010 as unknown (None),
+    since it's impossible for a real on-chain wallet to predate Bitcoin.
+    """
     if not v:
         return None
+    dt: Optional[datetime] = None
     try:
-        # AVE returns ISO 8601 with Z suffix: "2026-04-15T13:24:31Z"
         s = v.replace("Z", "+00:00") if isinstance(v, str) else v
-        return datetime.fromisoformat(s)
+        dt = datetime.fromisoformat(s)
     except (ValueError, AttributeError):
         pass
-    try:
-        return datetime.fromtimestamp(int(v), tz=timezone.utc)
-    except (ValueError, TypeError, OSError):
+    if dt is None:
+        try:
+            dt = datetime.fromtimestamp(int(v), tz=timezone.utc)
+        except (ValueError, TypeError, OSError):
+            return None
+    # Reject sentinel / clearly-invalid dates
+    if dt.year < 2010:
         return None
+    return dt

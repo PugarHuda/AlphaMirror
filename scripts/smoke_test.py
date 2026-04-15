@@ -22,30 +22,30 @@ def main() -> int:
         with AveClient() as ave:
             print("[1/3] search('PEPE', chain='bsc') ...")
             results = ave.search("PEPE", chain="bsc", limit=3)
-            print(f"  → {len(results)} tokens returned")
+            print(f"  ->{len(results)} tokens returned")
             if results:
                 sample = results[0]
-                print(f"  → first: {_brief(sample)}")
+                print(f"  ->first: {_brief(sample)}")
 
             print("\n[2/3] trending(chain='bsc') ...")
             trending = ave.trending(chain="bsc", page_size=5)
-            print(f"  → {len(trending)} trending tokens")
+            print(f"  ->{len(trending)} trending tokens")
 
             print("\n[3/3] smart_wallets(chain='bsc') ...")
             smart = ave.smart_wallets(chain="bsc")
-            print(f"  → {len(smart)} smart wallets returned")
+            print(f"  ->{len(smart)} smart wallets returned")
             if smart:
-                print(f"  → first: {_brief(smart[0])}")
+                print(f"  ->first: {_brief(smart[0])}")
 
-        print("\n✓ smoke test passed — AveClient works end-to-end.")
+        print("\n[PASS] smoke test passed - AveClient works end-to-end.")
         return 0
 
     except AveApiError as e:
-        print(f"\n✗ API error: {e}", file=sys.stderr)
+        print(f"\n[FAIL] API error: {e}", file=sys.stderr)
         print("  Check your AVE_API_KEY and that the free tier is active.", file=sys.stderr)
         return 1
     except ValueError as e:
-        print(f"\n✗ {e}", file=sys.stderr)
+        print(f"\n[FAIL] {e}", file=sys.stderr)
         return 1
 
 

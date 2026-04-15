@@ -79,10 +79,6 @@ def score_wallet(v: VerifiedWallet) -> VerifiedWallet:
         pts = 0
         reasons.append(f"consistency: +0 — {win_rate:.0%} win rate (mostly losing)")
 
-    # Penalty for one-hit-wonder pattern
-    if big_win_count >= 1 and conc >= 0.8:
-        pts = max(0, pts - 8)
-        reasons.append(f"  ↳ one-hit-wonder penalty: {conc:.0%} of big wins from one bucket")
     total += pts
 
     # --- 3. Recency (15 pts) ---
@@ -156,6 +152,20 @@ def score_wallet(v: VerifiedWallet) -> VerifiedWallet:
         pts = W_AGE * 0.1
         reasons.append(f"age: +{pts:.0f} — {age}d (fresh, suspicious)")
     total += pts
+
+    # One-hit-wonder hard ceiling.
+    # Rationale: if a wallet's big wins are >=80% concentrated in the
+    # single >10x bucket, the wallet is mathematically a lottery win,
+    # not a repeatable strategy. Even with otherwise-perfect signals,
+    # it must not land in APPROVED — we hard-cap it at the top of REVIEW.
+    if pd.big_wins >= 1 and pd.concentration_ratio >= 0.8:
+        ceiling = APPROVED_THRESHOLD - 1  # 69 = top of REVIEW band
+        if total > ceiling:
+            reasons.append(
+                f"one-hit-wonder cap: {total:.0f} -> {ceiling} "
+                f"(conc {pd.concentration_ratio:.0%})"
+            )
+            total = float(ceiling)
 
     v.score = round(total, 1)
     v.reasons = reasons
